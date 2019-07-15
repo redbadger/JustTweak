@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'JustTweak'
-  s.version          = '3.4.0'
+  s.version          = '3.4.1'
   s.summary          = 'A framework for feature flagging, locally and remotely configure and A/B test iOS apps.'
   s.description      = <<-DESC
 JustTweak is a framework for feature flagging, locally and remotely configure and A/B test iOS apps.
