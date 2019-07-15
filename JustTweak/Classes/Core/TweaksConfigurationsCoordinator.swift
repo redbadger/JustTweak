@@ -5,9 +5,9 @@
 
 import Foundation
 
-final public class TweaksConfigurationsCoordinator: NSObject, TweaksConfiguration {
+open class TweaksConfigurationsCoordinator: NSObject, TweaksConfiguration {
     
-    public var logClosure: TweaksLogClosure? {
+    open var logClosure: TweaksLogClosure? {
         didSet {
             for (index, _) in configurations.enumerated() {
                 configurations[index].logClosure = logClosure
@@ -35,7 +35,7 @@ final public class TweaksConfigurationsCoordinator: NSObject, TweaksConfiguratio
         NotificationCenter.default.removeObserver(self)
     }
     
-    public func isFeatureEnabled(_ feature: String) -> Bool {
+    open func isFeatureEnabled(_ feature: String) -> Bool {
         var enabled = false
         for (_, configuration) in configurations.enumerated().reversed() {
             if configuration.isFeatureEnabled(feature) {
@@ -46,7 +46,7 @@ final public class TweaksConfigurationsCoordinator: NSObject, TweaksConfiguratio
         return enabled
     }
     
-    public func tweakWith(feature: String, variable: String) -> Tweak? {
+    open func tweakWith(feature: String, variable: String) -> Tweak? {
         if useCache, let cachedTweaks = tweaksCache[feature], let cachedTweak = cachedTweaks[variable] {
             logClosure?("Tweak '\(cachedTweak)' found in cache.)", .verbose)
             return cachedTweak
@@ -84,7 +84,7 @@ final public class TweaksConfigurationsCoordinator: NSObject, TweaksConfiguratio
         return result
     }
     
-    public func activeVariation(for experiment: String) -> String? {
+    open func activeVariation(for experiment: String) -> String? {
         var activeVariation: String? = nil
         for (_, configuration) in configurations.enumerated().reversed() {
             activeVariation = configuration.activeVariation(for: experiment)

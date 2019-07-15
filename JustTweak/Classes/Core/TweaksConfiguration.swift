@@ -11,6 +11,13 @@ public protocol TweaksConfiguration {
     func isFeatureEnabled(_ feature: String) -> Bool
     func tweakWith(feature: String, variable: String) -> Tweak?
     func activeVariation(for experiment: String) -> String?
+    func getFeatureObject<T>(feature: String, type: T.Type) -> T?
+}
+
+public extension TweaksConfiguration {
+    public func getFeatureObject<T>(feature: String, type: T.Type) -> T? {
+        return nil
+    }
 }
 
 public protocol MutableTweaksConfiguration: TweaksConfiguration {
